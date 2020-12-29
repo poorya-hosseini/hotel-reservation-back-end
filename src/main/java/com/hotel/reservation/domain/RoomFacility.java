@@ -24,6 +24,7 @@ public class RoomFacility {
 	private Long id;
 
 	@NotNull
+	@Column(unique = true)
 	private String name;
 
 	@ManyToMany(mappedBy = "roomFacilities")

@@ -11,9 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 public class User {
 
 	@Id
@@ -21,9 +22,15 @@ public class User {
 	@SequenceGenerator(name = "id_gen", sequenceName = "user_id")
 	@Column(name = "user_id")
 	private Long id;
+
 	private String firstname;
+
 	private String lastname;
+
+	@NotNull
+	@Column(unique = true)
 	private String username;
+
 	private String password;
 
 	@OneToMany(mappedBy = "user")
@@ -86,7 +93,7 @@ public class User {
 			return false;
 		}
 		final User user = (User) o;
-		return id == user.id;
+		return id.equals(user.id);
 	}
 
 	@Override
